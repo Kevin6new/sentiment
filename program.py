@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 import os
 from dotenv import load_dotenv
+from langchain_community.vectorstores import Chroma
 
 load_dotenv()
 
@@ -20,7 +20,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=20
 texts = data['EmbedText'].tolist()
 splits = text_splitter.create_documents(texts)
 
-vectorstore = FAISS.from_documents(documents=splits, embedding=OpenAIEmbeddings())
+vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
 retriever = vectorstore.as_retriever()
 
 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
