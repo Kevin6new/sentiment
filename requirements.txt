@@ -5,4 +5,4 @@ python-dotenv==0.20.0
 altair>=5.0.0
 click==8.0.0
 langchain>=0.1.20
-langchain-openai>=0.1.9
+langchain-openai>=0.1.3
