@@ -4,6 +4,16 @@ import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+LANGCHAIN_TRACING_V2 = os.getenv('LANGCHAIN_TRACING_V2')
+LANGCHAIN_ENDPOINT = os.getenv('LANGCHAIN_ENDPOINT')
+LANGCHAIN_API_KEY = os.getenv('LANGCHAIN_API_KEY')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
 data = pd.read_pickle("preprocessed_data.pkl")
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
